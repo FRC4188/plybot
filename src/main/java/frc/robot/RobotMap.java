@@ -9,6 +9,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class RobotMap {
 
@@ -24,7 +26,7 @@ public class RobotMap {
 		talon3 = new WPI_TalonSRX(3);
 		talon4 = new WPI_TalonSRX(4);
 
-		spark1 = new Spark(20 , kBrushelss);
+		spark1 = new CANSparkMax(20,MotorType.kBrushless);
 	}
 	
 }

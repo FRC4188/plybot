@@ -33,6 +33,8 @@ public class ManualDrive extends Command {
     RobotMap.talon2.set(ControlMode.PercentOutput, Robot.m_oi.pilot.getY(Hand.kLeft));
     RobotMap.talon3.set(ControlMode.PercentOutput, Robot.m_oi.pilot.getY(Hand.kLeft));
     RobotMap.talon4.set(ControlMode.PercentOutput, Robot.m_oi.pilot.getY(Hand.kLeft));
+
+    RobotMap.spark1.set(Robot.m_oi.pilot.getY(Hand.kLeft));
   }
 
   // Make this return true when this Command no longer needs to run execute()

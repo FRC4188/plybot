@@ -24,7 +24,8 @@ import frc.robot.subsystems.Drivetrain;;
 public class Robot extends TimedRobot {
 
 	public static OI m_oi;
-	public static Drivetrain m_drivetrain;
+  public static Drivetrain m_drivetrain;
+  public static Neo m_neo;
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -32,7 +33,8 @@ public class Robot extends TimedRobot {
 	public void robotInit() {
 		m_oi = new OI();
 		RobotMap.init();
-		m_drivetrain = new Drivetrain();
+    m_drivetrain = new Drivetrain();
+    m_neo = new Neo();
 		
 	}
 

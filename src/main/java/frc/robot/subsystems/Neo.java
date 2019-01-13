@@ -5,26 +5,18 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot;
+package frc.robot.subsystems;
 
+import frc.robot.RobotMap;
+import frc.robot.commands.ManualDrive;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class RobotMap {
+public class Neo extends Subsystem {
+        
+	public void initDefaultCommand() {
+        setDefaultCommand(new NeoDrive());
+    }
 
-	public static DoubleSolenoid gearShift;
-	public static WPI_TalonSRX talon1, talon2, talon3, talon4;
-	public static CANSparkMax spark1;
-
-	public static void init() {	
-		gearShift = new DoubleSolenoid(0,1);
-
-		talon1 = new WPI_TalonSRX(12);
-		talon2 = new WPI_TalonSRX(17);
-		talon3 = new WPI_TalonSRX(3);
-		talon4 = new WPI_TalonSRX(4);
-
-		spark1 = new Spark(20 , kBrushelss);
-	}
-	
 }

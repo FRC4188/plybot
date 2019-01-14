@@ -29,16 +29,16 @@ public class OI {
 	public JoystickButton pilot10;
 
 
-  public Joystick rocketBox;
+  public XboxController rocketBox;
 
-	public JoystickButton rocketBox1, rocketBox2;
+	public JoystickButton rocketBox1;
 	
 	public OI() {
 		pilot = new XboxController(0);
 		pilot9 = new JoystickButton(pilot, 9);
 		pilot10 = new JoystickButton(pilot, 10);
 		
-		rocketBox = new Joystick(1);
+		rocketBox = new XboxController(1);
 		rocketBox1 = new JoystickButton(rocketBox, 1);
 
     pilot9.whenPressed(new GearShiftIn());
@@ -47,7 +47,7 @@ public class OI {
 	pilot10.whenReleased(new GearShiftOff());
 	
 	rocketBox1.whenPressed(new ButtonRun());
-	rocketBox2.whenPressed(new ButtonKill());
+	rocketBox1.whenReleased(new ButtonKill());
 	
 	}
 

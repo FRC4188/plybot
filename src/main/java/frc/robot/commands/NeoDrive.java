@@ -15,7 +15,7 @@ import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 public class NeoDrive extends Command {
-  public ManualDrive() {
+  public NeoDrive() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.m_neo);

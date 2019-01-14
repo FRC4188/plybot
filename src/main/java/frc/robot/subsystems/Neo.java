@@ -7,11 +7,12 @@
 
 package frc.robot.subsystems;
 
-import frc.robot.RobotMap;
-import frc.robot.commands.ManualDrive;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import frc.robot.commands.NeoDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Robot;
+import frc.robot.RobotMap;
+
+
 
 public class Neo extends Subsystem {
         
@@ -19,4 +20,11 @@ public class Neo extends Subsystem {
         setDefaultCommand(new NeoDrive());
     }
 
+    public void buttonRun(){
+        RobotMap.spark1.set(.2);
+    }
+
+    public void buttonKill(){
+        RobotMap.spark1.set(0);
+    }
 }

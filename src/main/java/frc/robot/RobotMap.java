@@ -9,12 +9,14 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class RobotMap {
 
 	public static DoubleSolenoid gearShift;
 	public static WPI_TalonSRX talon1, talon2, talon3, talon4;
-	public static CANSparkMax spark1;
+	public static CANSparkMax spark1, spark2;
 
 	public static void init() {	
 		gearShift = new DoubleSolenoid(0,1);
@@ -24,7 +26,8 @@ public class RobotMap {
 		talon3 = new WPI_TalonSRX(3);
 		talon4 = new WPI_TalonSRX(4);
 
-		spark1 = new Spark(20 , kBrushelss);
+		spark1 = new CANSparkMax(20, MotorType.kBrushless);
+		spark2 = new CANSparkMax(21, MotorType.kBrushless);
 	}
 	
 }

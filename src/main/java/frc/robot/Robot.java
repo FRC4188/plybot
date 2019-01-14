@@ -12,7 +12,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.subsystems.Drivetrain;;
+import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Neo;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -34,10 +35,8 @@ public class Robot extends TimedRobot {
 		m_oi = new OI();
 		RobotMap.init();
     m_drivetrain = new Drivetrain();
-    m_neo = new Neo();
-		
+		m_neo = new Neo();
 	}
-
   /**
    * This function is called every robot packet, no matter the mode. Use
    * this for items like diagnostics that you want ran during disabled,

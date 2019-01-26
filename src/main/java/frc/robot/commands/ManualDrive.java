@@ -1,56 +1,47 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 package frc.robot.commands;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-
-import edu.wpi.first.wpilibj.GenericHID.Hand;
-import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
+import edu.wpi.first.wpilibj.command.Command;
 
 public class ManualDrive extends Command {
-  public ManualDrive() {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-    requires(Robot.m_drivetrain);
-  }
 
-  // Called just before this Command runs the first time
-  @Override
-  protected void initialize() {
-  }
+    public ManualDrive() {
+        requires(Robot.m_drivetrain);
+    }
 
-  // Called repeatedly when this Command is scheduled to run
-  @Override
-  protected void execute() {
-    RobotMap.talon1.set(ControlMode.PercentOutput, Robot.m_oi.pilot.getY(Hand.kLeft));
-    RobotMap.talon2.set(ControlMode.PercentOutput, Robot.m_oi.pilot.getY(Hand.kLeft));
-    RobotMap.talon3.set(ControlMode.PercentOutput, Robot.m_oi.pilot.getY(Hand.kLeft));
-    RobotMap.talon4.set(ControlMode.PercentOutput, Robot.m_oi.pilot.getY(Hand.kLeft));
+    @Override
+    protected void initialize() {
+    }
 
-    RobotMap.spark1.set(Robot.m_oi.pilot.getY(Hand.kLeft));
-  }
+    @Override
+    protected void execute() {
+        
+        RobotMap.talon1.set(ControlMode.PercentOutput, Robot.m_oi.copilot.getY(Hand.kLeft));
+        RobotMap.talon2.set(ControlMode.PercentOutput, Robot.m_oi.copilot.getY(Hand.kLeft));
+        RobotMap.talon3.set(ControlMode.PercentOutput, Robot.m_oi.copilot.getY(Hand.kLeft));
+        RobotMap.talon4.set(ControlMode.PercentOutput, Robot.m_oi.copilot.getY(Hand.kLeft));
 
-  // Make this return true when this Command no longer needs to run execute()
-  @Override
-  protected boolean isFinished() {
-    return false;
-  }
+        RobotMap.spark5.set(Robot.m_oi.copilot.getX(Hand.kRight));
+        
+        RobotMap.drive.arcadeDrive(Robot.m_oi.pilot.getY(Hand.kLeft), 
+             -Robot.m_oi.pilot.getX(Hand.kRight));
 
-  // Called once after isFinished returns true
-  @Override
-  protected void end() {
-  }
+    }
 
-  // Called when another command which requires one or more of the same
-  // subsystems is scheduled to run
-  @Override
-  protected void interrupted() {
-  }
+    @Override
+    protected boolean isFinished() {
+        return false;
+    }
+
+    @Override
+    protected void end() {
+    }
+
+    @Override
+    protected void interrupted() {
+    }
+    
 }

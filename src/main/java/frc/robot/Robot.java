@@ -14,14 +14,14 @@ public class Robot extends TimedRobot {
     public static Drivetrain m_drivetrain;
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
-    private static I2C Wire;
+    I2C Wire = new I2C(Port.kOnboard, 8);
 
 	@Override
 	public void robotInit() {
         m_oi = new OI();
 		RobotMap.init();
         m_drivetrain = new Drivetrain();
-        Wire = new I2C(Port.kOnboard, 4);
+       
 	}
 
     @Override
@@ -50,19 +50,28 @@ public class Robot extends TimedRobot {
         Scheduler.getInstance().run();
     }
 
+    String command = "1";
+    char[] commandC = command.toCharArray();
+    byte[] commandB = new byte[commandC.length];
+    byte[] inC = new byte[0];
+
     @Override
     public void teleopInit() {
         if (m_autonomousCommand != null) {
             m_autonomousCommand.cancel();
         }
 
-        byte[] command = new byte[1];
-        Wire.transaction(command, command.length, null, 0);
+        for(int i = 0; i < commandC.length; i++){
+            commandB[i] = (byte)commandC[i];
+        }
+        //Wire.write(4, 1);
+        Wire.transaction(commandB, commandB.length, inC, 0);
     }
 
     @Override
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+     
     }
 
     @Override

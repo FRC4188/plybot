@@ -50,28 +50,39 @@ public class Robot extends TimedRobot {
         Scheduler.getInstance().run();
     }
 
-    String command = "1";
-    char[] commandC = command.toCharArray();
-    byte[] commandB = new byte[commandC.length];
-    byte[] inC = new byte[0];
-
     @Override
     public void teleopInit() {
         if (m_autonomousCommand != null) {
             m_autonomousCommand.cancel();
         }
-
-        for(int i = 0; i < commandC.length; i++){
-            commandB[i] = (byte)commandC[i];
-        }
-        //Wire.write(4, 1);
-        Wire.transaction(commandB, commandB.length, inC, 0);
     }
+
+    //Commands sent as int value
+    //Ill make some enums or some shit
+
+    
+    String command;
+    int i = 0;
 
     @Override
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-     
+        
+        if(i%60 == 0){  
+            if(command == "1") 
+                command = "2";
+            else command = "1";    
+        }
+        char[] commandC = command.toCharArray();
+        byte[] commandB = new byte[commandC.length];
+        byte[] inC = new byte[0];
+
+        for(int i = 0; i < commandC.length; i++){
+            commandB[i] = (byte)commandC[i];
+        }
+        //Wire.write(4, commandB);
+        i++;
+        Wire.transaction(commandB, commandB.length, inC, 0);
     }
 
     @Override

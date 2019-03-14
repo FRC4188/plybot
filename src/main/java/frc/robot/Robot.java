@@ -61,18 +61,19 @@ public class Robot extends TimedRobot {
     //Ill make some enums or some shit
 
     
-    String command;
     int i = 0;
+    String command = "06";
 
     @Override
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         
-        if(i%60 == 0){  
-            if(command == "1") 
-                command = "2";
-            else command = "1";    
-        }
+        if(i < 100)
+            command = "06";
+        else if(i < 200)
+            command = "05";
+        else if(i < 300)
+            command = "04";
         char[] commandC = command.toCharArray();
         byte[] commandB = new byte[commandC.length];
         byte[] inC = new byte[0];
@@ -80,9 +81,9 @@ public class Robot extends TimedRobot {
         for(int i = 0; i < commandC.length; i++){
             commandB[i] = (byte)commandC[i];
         }
-        //Wire.write(4, commandB);
         i++;
         Wire.transaction(commandB, commandB.length, inC, 0);
+        
     }
 
     @Override
